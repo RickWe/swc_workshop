@@ -22,6 +22,14 @@ gapminder <- read.csv("gapminder-FiveYearData.csv")
 is_2007 <- gapminder$continent == "Africa"
 is_Africa <- gapminder$year == 2007
 africa_2007 <- gapminder[is_2007 & is_Africa, c("country", "lifeExp")]
+# create plot for git practice
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +
+  geom_point() +
+  facet_grid(.~continent)
+# save last plot and name it; preferences
+ggsave(filename = "GDP_vs_lifeExp.png", width = 5, height = 4, units = "in")
+
+#------------
 
 ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
