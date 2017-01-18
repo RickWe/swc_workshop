@@ -7,22 +7,29 @@ output: html_document
 
 
 ```{r setup, include=FALSE}
-library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+source("code/gapminder_utilities.R")
 ```
 
 This is a report describing changes in life expectancy over the last 60 years as it relates to GDP and other variables.
 
 ```{r load_data, echo=FALSE}
-gapminder <- read.csv("gapminder-FiveYearData.csv")
+gapminder <- read.csv("data/gapminder-FiveYearData.csv")
 ```
 
 The gapfinder dataset contains `r ncol(gapminder)` variables from `r nrow(gapminder)` observations.
 
 I was blown away by these results.
 
-```{r facet_plot, echo=FALSE, fig.height=3}
+```{r facet_plot, echo=FALSE, fig.height=3, fig.path="figures/"}
 ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +
   geom_point() +
   facet_grid(.~continent)
 ```
+
+```{r GDP}
+calcGDP(gapminder, country = "China")
+calcGDP(gapminder, year=2002, country = "China")
+```
+
