@@ -1,0 +1,34 @@
+---
+title: "second_RMarkdown_file"
+author: "Rick We"
+date: "January 18, 2017"
+output: html_document
+---
+# Here is the link that pulls data from github
+download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "/Users/rick/Projects/git_repos/swc_workshop/gapminder-FiveYearData.csv")
+
+```{r setup, include=FALSE} download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "/Users/rick/Projects/git_repos/swc_workshop/gapminder-FiveYearData.csv") +
+gapminder <- read.csv("gapminder-FiveYearData.csv") +
+ +
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r is_2007 <- gapminder$continent == "Africa" +
+is_Africa <- gapminder$year == 2007 +
+africa_2007 <- gapminder[is_2007 & is_Africa, c("country", "lifeExp")]}
+```
+## Including Plots
+You can also embed plots, for example:
+```{r ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +
+  geom_point() +
+  facet_grid(.~continent) }
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
