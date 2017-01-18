@@ -1,0 +1,28 @@
+---
+title: 'Gapminder: Data Analysis Report'
+author: "Rick We"
+date: "January 18, 2017"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+library(ggplot2)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is a report describing changes in life expectancy over the last 60 years as it relates to GDP and other variables.
+
+```{r load_data, echo=FALSE}
+gapminder <- read.csv("gapminder-FiveYearData.csv")
+```
+
+The gapfinder dataset contains `r ncol(gapminder)` variables from `r nrow(gapminder)` observations.
+
+I was blown away by these results.
+
+```{r facet_plot, echo=FALSE, fig.height=3}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +
+  geom_point() +
+  facet_grid(.~continent)
+```
