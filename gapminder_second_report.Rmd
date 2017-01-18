@@ -5,7 +5,6 @@ date: "January 18, 2017"
 output: html_document
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
@@ -32,4 +31,18 @@ ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +
 calcGDP(gapminder, country = "China")
 calcGDP(gapminder, year=2002, country = "China")
 ```
+facet plot for life expectancy by year:
 
+```{r facet_plot_2, echo=FALSE, fig.height=3, fig.path="figures/"}
+ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +
+  geom_point() +
+  facet_grid(.~continent)
+```
+
+facet plot for GDP per capita by year:
+
+```{r facet_plot_3, echo=FALSE, fig.height=3, fig.path="figures/"}
+ggplot(data = gapminder, aes(x = year, y = gdpPercap, color=continent)) +
+  geom_point() +
+  facet_grid(.~continent)
+```
